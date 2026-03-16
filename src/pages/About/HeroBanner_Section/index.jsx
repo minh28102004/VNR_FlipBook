@@ -238,15 +238,15 @@ const HeroSection = () => {
                 className="inline-flex items-center px-4 py-2 bg-amber-400/10 border border-amber-400/20 rounded-full text-amber-400 text-sm font-medium"
               >
                 <Clock className="w-4 h-4 mr-2" />
-                HÀNH TRÌNH 130+ NĂM CỨU NƯỚC &amp; XÂY DỰNG ĐẤT NƯỚC
+                HÀNH TRÌNH 90+ NĂM XÂY DỰNG & PHÁT TRIỂN ĐẢNG
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 <span className="block text-slate-200">
-                  TRANG GIỚI THIỆU MÔN HỌC
+                  TRANG GIỚI THIỆU
                 </span>
                 <span className="block bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
-                  TƯ TƯỞNG HỒ CHÍ MINH
+                  SỰ RA ĐỜI CỦA ĐẢNG CỘNG SẢN VIỆT NAM
                 </span>
               </h1>
 
@@ -263,16 +263,15 @@ const HeroSection = () => {
                 transition={{ duration: 0.9, delay: 0.6 }}
                 className="text-lg md:text-xl text-slate-300 leading-relaxed font-light"
               >
-                Tư tưởng Hồ Chí Minh là{" "}
+                Sự ra đời của Đảng Cộng sản Việt Nam là{" "}
                 <span className="text-amber-400 font-medium">
-                  hệ thống quan điểm toàn diện và sâu sắc
+                  sự kiện lịch sử trọng đại
                 </span>{" "}
-                về những vấn đề cơ bản của cách mạng Việt Nam — kết quả của sự{" "}
+                đánh dấu bước ngoặt trong lịch sử cách mạng Việt Nam — kết quả của sự{" "}
                 <span className="text-amber-400 font-medium">
-                  vận dụng sáng tạo chủ nghĩa Mác–Lênin
+                  kết hợp chủ nghĩa Mác–Lênin
                 </span>{" "}
-                vào điều kiện cụ thể, kế thừa truyền thống dân tộc và tiếp thu
-                tinh hoa văn hóa nhân loại.
+                với phong trào công nhân và yêu nước Việt Nam.
               </motion.p>
 
               <motion.p
@@ -281,12 +280,11 @@ const HeroSection = () => {
                 transition={{ duration: 0.9, delay: 0.8 }}
                 className="text-lg text-slate-400 leading-relaxed"
               >
-                Nó không chỉ là lý thuyết, mà là{" "}
+                Tìm hiểu hành trình từ những phong trào yêu nước thất bại đầu thế kỷ XX,{" "}
                 <span className="text-amber-400 font-medium">
-                  ngọn đuốc soi đường — kim chỉ nam cho hành động
+                  sự ra đời của Đảng Cộng sản Việt Nam
                 </span>{" "}
-                của Đảng và nhân dân Việt Nam, dẫn dắt sự nghiệp cách mạng, đổi
-                mới và hội nhập hôm nay.
+                và ý nghĩa lịch sử to lớn đối với sự nghiệp cách mạng của dân tộc.
               </motion.p>
             </div>
 
@@ -299,19 +297,19 @@ const HeroSection = () => {
             >
               <div className="flex items-center space-x-3 text-slate-300">
                 <Flag className="w-5 h-5 text-amber-400" />
-                <span>Độc lập &amp; CNXH</span>
+                <span>Giải phóng dân tộc</span>
               </div>
               <div className="flex items-center space-x-3 text-slate-300">
                 <Users className="w-5 h-5 text-amber-400" />
-                <span>Đại đoàn kết</span>
+                <span>Chủ nghĩa Mác-Lênin</span>
               </div>
               <div className="flex items-center space-x-3 text-slate-300">
                 <Landmark className="w-5 h-5 text-amber-400" />
-                <span>Đảng &amp; Nhà nước vì dân</span>
+                <span>Đảng Cộng sản</span>
               </div>
               <div className="flex items-center space-x-3 text-slate-300">
                 <Heart className="w-5 h-5 text-amber-400" />
-                <span>Văn hóa – đạo đức – con người</span>
+                <span>Thống nhất tổ chức</span>
               </div>
             </motion.div>
 

@@ -12,7 +12,7 @@ import BookToolbox from "../StoryBook/BookToolbox";
 import {
   spreads as PHILO_SPREADS,
   spreadsToPages,
-} from "./philosophySpreads.jsx";
+} from "./partyFormationSpreads.jsx";
 
 import "@styles/BookTheme.css";
 import "@styles/BookAnimations.css";
