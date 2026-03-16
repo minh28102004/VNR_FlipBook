@@ -1,7 +1,6 @@
-import { Flag, Ship, Landmark, Users, Heart, Sparkles } from "lucide-react";
+﻿import { Flag, Ship, Landmark, Users, Heart, Sparkles } from 'lucide-react';
 
-// Với Vite: BASE_URL sẽ tự đúng cả khi deploy dưới subpath
-const base = import.meta.env.BASE_URL; // thường là "/"
+const base = import.meta.env.BASE_URL;
 
 export const bannerImages = [
   `${base}kdht.png`,
@@ -11,64 +10,63 @@ export const bannerImages = [
   `${base}dssd.png`,
 ];
 
-// Thêm export này để index.jsx import không lỗi nữa
 export const introSlides = [
   {
     image: bannerImages[0],
-    title: "Khởi đầu hành trình",
-    text: "Từ làng Sen, khát vọng độc lập được hun đúc và trở thành điểm xuất phát cho hành trình cứu nước.",
+    title: 'Bối cảnh lịch sử',
+    text: 'Cuối thế kỷ XIX, Việt Nam trong tình trạng khủng hoảng về đường lối cứu nước. Các phong trào yêu nước như Cần Vương, Yên Thế, Đông Du đều thất bại.',
   },
   {
     image: bannerImages[1],
-    title: "Bến Nhà Rồng 1911",
-    text: "Ngày 5/6/1911, Người ra đi tìm đường cứu nước — bước ngoặt mở ra hành trình bôn ba 5 châu 4 biển.",
+    title: 'Nguyễn Ái Quốc ra đi tìm đường cứu nước',
+    text: 'Ngày 5/6/1911, Nguyễn Ái Quốc rời bến cảng Nhà Rồng để tìm đường cứu nước. Hành trình bôn ba khắp năm châu bốn biển.',
   },
   {
     image: bannerImages[2],
-    title: "Mùa thu độc lập 1945",
-    text: "Cách mạng Tháng Tám và Tuyên ngôn Độc lập xác lập quyền tự do, tự chủ của dân tộc Việt Nam.",
+    title: 'Tiếp cận Chủ nghĩa Mác - Lênin',
+    text: 'Năm 1920, tại Đại hội Đảng Cộng sản Pháp, Nguyễn Ái Quốc đọc được Luận cương của Lênin về vấn đề dân tộc và thuộc địa.',
   },
   {
     image: bannerImages[3],
-    title: "Sức mạnh đoàn kết 1954",
-    text: "Điện Biên Phủ là minh chứng cho đường lối đúng đắn và sức mạnh đại đoàn kết toàn dân tộc.",
+    title: 'Thành lập Đảng Cộng sản Việt Nam',
+    text: 'Tháng 2/1930, Hội nghị hợp nhất tại Hồng Kông thành lập Đảng Cộng sản Việt Nam - sự kiện lịch sử trọng đại.',
   },
   {
     image: bannerImages[4],
-    title: "Di sản sống động",
-    text: "Tư tưởng Hồ Chí Minh tiếp tục soi đường cho đổi mới, hội nhập và xây dựng đất nước hôm nay.",
+    title: 'Ý nghĩa lịch sử',
+    text: 'Sự ra đời của Đảng chấm dứt khủng hoảng về đường lối, đánh dấu bước ngoặt trong cách mạng Việt Nam.',
   },
 ];
 
 export const concepts = [
   {
     icon: Flag,
-    title: "Độc lập dân tộc & CNXH",
-    text: "Độc lập phải gắn với hạnh phúc nhân dân và con đường đi lên CNXH, hướng tới dân giàu, nước mạnh, công bằng, dân chủ, văn minh.",
+    title: 'Giải phóng dân tộc',
+    text: 'Mục tiêu hàng đầu của cách mạng Việt Nam là giành độc lập dân tộc, đánh đổ đế quốc và phong kiến.',
   },
   {
     icon: Users,
-    title: "Đại đoàn kết toàn dân",
-    text: "Đoàn kết là chiến lược lâu dài: lấy công–nông–trí thức làm nền tảng, quy tụ mọi tầng lớp vì mục tiêu chung.",
+    title: 'Kết hợp lý luận với thực tiễn',
+    text: 'Kết hợp Chủ nghĩa Mác - Lênin với phong trào công nhân và phong trào yêu nước Việt Nam.',
   },
   {
     icon: Landmark,
-    title: "Đảng & Nhà nước vì dân",
-    text: "Đảng trong sạch vững mạnh; Nhà nước của dân–do dân–vì dân; cán bộ là công bộc, thượng tôn pháp luật.",
+    title: 'Đảng lãnh đạo',
+    text: 'Đảng Cộng sản Việt Nam là lực lượng lãnh đạo, tổ chức và giáo dục quần chúng.',
   },
   {
     icon: Heart,
-    title: "Văn hóa – Đạo đức – Con người",
-    text: "Đạo đức là gốc: cần, kiệm, liêm, chính, chí công vô tư; xây dựng văn hóa tiên tiến, đậm đà bản sắc; ‘trồng người’.",
+    title: 'Đại đoàn kết',
+    text: 'Tập hợp lực lượng toàn dân, không phân biệt giai cấp, tôn giáo hay dân tộc.',
   },
   {
     icon: Ship,
-    title: "Hành trình hình thành tư tưởng",
-    text: "1890–1911 khởi đầu; 1911–1930 tìm đường; 1930–1945 lập Đảng; 1945–1954 kháng chiến; 1954–1969 xây dựng.",
+    title: 'Hành trình hình thành',
+    text: 'Từ 1911–1930: tìm đường cứu nước; 1930: thành lập Đảng; 1945: cách mạng thành công.',
   },
   {
     icon: Sparkles,
-    title: "Di sản hôm nay",
-    text: "Vận dụng trong đổi mới & hội nhập: phát triển gắn tiến bộ, công bằng xã hội và sức mạnh đoàn kết.",
+    title: 'Di sản ngày nay',
+    text: 'Đảng lãnh đạo nhân dân giành nhiều thắng lợi, từ kháng chiến đến công cuộc đổi mới.',
   },
 ];
