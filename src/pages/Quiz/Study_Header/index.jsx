@@ -37,10 +37,10 @@ function StudyHeader({
     totalQuestions > 0 ? Math.min(currentPage + 1, totalQuestions) : 0;
 
   const progressByMode = useSelector((state) =>
-    selectModeAttemptPercent(state, activeChapter, studyMode)
+    selectModeAttemptPercent(state, activeChapter, studyMode),
   );
   const correctCountByMode = useSelector((state) =>
-    selectModeCorrectCount(state, activeChapter, studyMode)
+    selectModeCorrectCount(state, activeChapter, studyMode),
   );
 
   const textColor = darkMode ? "text-white" : "text-slate-800";
@@ -57,7 +57,7 @@ function StudyHeader({
       { mode: "quiz", icon: Brain, label: "Trắc nghiệm" },
       { mode: "fill", icon: Edit3, label: "Điền đáp án" },
     ],
-    []
+    [],
   );
 
   // ===== Toast mặc định (không custom UI) =====
@@ -66,7 +66,7 @@ function StudyHeader({
       shuffleQuestions();
       toast.success(
         "Đã tráo thẻ! Thứ tự câu hỏi/thẻ đã được xáo trộn ngẫu nhiên.",
-        { toastId: "toast-shuffle" }
+        { toastId: "toast-shuffle" },
       );
     }
   }, [shuffleQuestions]);
@@ -76,7 +76,7 @@ function StudyHeader({
       restartChapter();
       toast.success(
         "Đã làm lại! Tất cả câu hỏi được đặt về trạng thái & thứ tự ban đầu.",
-        { toastId: "toast-restart" }
+        { toastId: "toast-restart" },
       );
     }
   }, [restartChapter]);
@@ -87,22 +87,22 @@ function StudyHeader({
       { onClick: handleRestart, icon: RefreshCw, label: "Làm lại" },
       { onClick: toggleFullscreen, icon: Maximize2, label: "Toàn màn hình" },
     ],
-    [handleShuffle, handleRestart, toggleFullscreen]
+    [handleShuffle, handleRestart, toggleFullscreen],
   );
 
   const handleChangeMode = useCallback(
     (mode) => {
       if (mode !== studyMode) setStudyMode(mode);
     },
-    [studyMode, setStudyMode]
+    [studyMode, setStudyMode],
   );
 
   const modeLabel =
     studyMode === "quiz"
       ? "Trắc nghiệm"
       : studyMode === "fill"
-      ? "Điền đáp án"
-      : "Flashcard";
+        ? "Điền đáp án"
+        : "Flashcard";
 
   return (
     <div className="mb-8" role="region" aria-label="Thanh điều khiển học tập">
@@ -198,6 +198,7 @@ function StudyHeader({
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-5 flex-wrap gap-2 lg:flex-nowrap lg:gap-0">
         <div className="flex gap-2 flex-wrap">
+          {/* eslint-disable-next-line no-unused-vars */}
           {studyModes.map(({ mode, icon: Icon, label }) => {
             const isActive = studyMode === mode;
             return (
@@ -226,6 +227,7 @@ function StudyHeader({
         </div>
 
         <div className="flex gap-2 flex-wrap justify-end">
+          {/* eslint-disable-next-line no-unused-vars */}
           {actions.map(({ onClick, icon: Icon, label }) => (
             <button
               key={label}

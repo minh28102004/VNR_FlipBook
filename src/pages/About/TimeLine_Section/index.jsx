@@ -6,17 +6,15 @@ import React, {
   useLayoutEffect,
   forwardRef,
 } from "react";
-import { motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  MotionConfig,
+  useScroll,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 import { Quote } from "lucide-react";
 import { timelineEvents } from "./data";
-
-/**
- * TimelineSection (Stable, JSX)
- * - Freeze animations during resize (debounce)
- * - Pause IO + "revealAll at bottom" while resizing
- * - Lock spine height after resize to reduce reflow
- * - Keep spring smooth otherwise
- */
 
 const container = {
   hidden: { opacity: 0 },
@@ -51,10 +49,14 @@ const QuoteBlock = ({ quote, author }) => (
   <div className="p-5 md:p-6 rounded-xl bg-slate-900/70 border border-white/10">
     <Quote className="w-5 h-5 md:w-6 md:h-6 text-amber-400 mb-3" />
     {quote && (
-      <blockquote className="text-slate-300 italic leading-relaxed">“{quote}”</blockquote>
+      <blockquote className="text-slate-300 italic leading-relaxed">
+        “{quote}”
+      </blockquote>
     )}
     {author && (
-      <cite className="mt-3 block text-amber-300/90 text-sm font-medium">— {author}</cite>
+      <cite className="mt-3 block text-amber-300/90 text-sm font-medium">
+        — {author}
+      </cite>
     )}
   </div>
 );
@@ -74,13 +76,14 @@ const Card = forwardRef(({ e, index, isVisible, isResizing }, ref) => {
       data-card
       style={{ willChange: isResizing ? "auto" : "transform, opacity" }}
     >
-      {/* Marker (desktop) */}
       <div
         className="hidden lg:block absolute top-3 left-1/2 -translate-x-1/2 size-5 rounded-full bg-amber-400 shadow-[0_0_0_4px_rgba(2,6,23,1)] ring-4 ring-amber-400/30"
         aria-hidden
       />
 
-      <div className={`grid grid-cols-1 lg:grid-cols-2 items-stretch ${sidePad}`}>
+      <div
+        className={`grid grid-cols-1 lg:grid-cols-2 items-stretch ${sidePad}`}
+      >
         {alignRight ? <div className="hidden lg:block" /> : null}
 
         <div className="w-full text-left">
@@ -91,18 +94,29 @@ const Card = forwardRef(({ e, index, isVisible, isResizing }, ref) => {
               "hover:border-amber-300/25",
             ].join(" ")}
           >
-            {/* Accent gradient */}
             <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-amber-400/10 to-transparent" />
 
             <div className="flex justify-start mb-3">
               <YearBadge year={e.year} />
             </div>
 
-            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{e.title}</h3>
-            {e.subtitle && <p className="mt-1 text-amber-300/90 font-medium">{e.subtitle}</p>}
+            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+              {e.title}
+            </h3>
 
-            {e.description && <p className="mt-4 text-slate-300 leading-relaxed">{e.description}</p>}
-            {e.details && <p className="mt-3 text-sm text-slate-400">{e.details}</p>}
+            {e.subtitle && (
+              <p className="mt-1 text-amber-300/90 font-medium">{e.subtitle}</p>
+            )}
+
+            {e.description && (
+              <p className="mt-4 text-slate-300 leading-relaxed">
+                {e.description}
+              </p>
+            )}
+
+            {e.details && (
+              <p className="mt-3 text-sm text-slate-400">{e.details}</p>
+            )}
 
             {(e.quote || e.author) && (
               <div className="mt-6">
@@ -119,19 +133,16 @@ const Card = forwardRef(({ e, index, isVisible, isResizing }, ref) => {
 });
 Card.displayName = "Card";
 
-// Dùng inset (px) để rút ngắn thanh: mặc định 32px = 2rem
 const Spine = ({ progress, inset = 34 }) => (
   <div
     aria-hidden
     className="pointer-events-none hidden lg:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-px"
   >
-    {/* Base line (đường nền) - rút ngắn bằng top/bottom */}
     <div
       className="absolute left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-transparent via-amber-400/40 to-transparent"
       style={{ top: inset, bottom: inset }}
     />
 
-    {/* Progress overlay (phần vàng chạy theo scroll) */}
     <motion.div
       className="absolute left-1/2 -translate-x-1/2 w-px origin-top rounded bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 shadow-[0_0_12px_1px_rgba(251,191,36,0.35)]"
       style={{ top: inset, bottom: inset, scaleY: progress }}
@@ -139,39 +150,37 @@ const Spine = ({ progress, inset = 34 }) => (
   </div>
 );
 
-
 const TimelineSection = ({ visibleSections }) => {
   const isVisible = !visibleSections || visibleSections.has?.("timeline");
+  const shouldReduceMotion = useReducedMotion();
 
-  // Progressive reveal
   const [headerDone, setHeaderDone] = useState(false);
   const [revealAll, setRevealAll] = useState(false);
   const [visibleCards, setVisibleCards] = useState(() => {
     const arr = new Array(timelineEvents.length).fill(false);
-    if (arr.length > 0) arr[0] = true; // ưu tiên chữ: card đầu tiên
+    if (arr.length > 0) arr[0] = true;
     return arr;
   });
 
   const sectionRef = useRef(null);
   const cardRefs = useRef([]);
 
-  // Freeze during resize
   const [isResizing, setIsResizing] = useState(false);
   const lastProgressRef = useRef(0);
-  const [spineHeight, setSpineHeight] = useState(null);
 
-  // Scroll progress (spring)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 20,
-    mass: 0.6,
+    stiffness: shouldReduceMotion ? 1000 : 120,
+    damping: shouldReduceMotion ? 1000 : 20,
+    mass: shouldReduceMotion ? 1 : 0.6,
   });
 
   const [maxProgress, setMaxProgress] = useState(0);
+
   useEffect(() => {
     const unsub = smoothProgress.on("change", (v) => {
       lastProgressRef.current = v;
@@ -180,7 +189,6 @@ const TimelineSection = ({ visibleSections }) => {
     return () => unsub();
   }, [smoothProgress]);
 
-  // Debounced resize handler
   useEffect(() => {
     let t;
     const onResize = () => {
@@ -190,6 +198,7 @@ const TimelineSection = ({ visibleSections }) => {
         setIsResizing(false);
       }, 200);
     };
+
     window.addEventListener("resize", onResize, { passive: true });
     return () => {
       window.removeEventListener("resize", onResize);
@@ -197,18 +206,16 @@ const TimelineSection = ({ visibleSections }) => {
     };
   }, []);
 
-  // Lock spine height after resize settles
   useLayoutEffect(() => {
     if (sectionRef.current && !isResizing) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      setSpineHeight(Math.max(0, rect.height - 48)); // 100% - 3rem
+      sectionRef.current.getBoundingClientRect();
     }
   }, [isResizing]);
 
-  // Reveal all if at bottom (but not during resize)
   useEffect(() => {
     const atBottom = () =>
-      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 16;
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 16;
 
     const onScroll = () => {
       if (!isResizing && atBottom()) setRevealAll(true);
@@ -220,7 +227,6 @@ const TimelineSection = ({ visibleSections }) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isResizing]);
 
-  // IntersectionObserver (pause while resizing)
   useEffect(() => {
     if (!headerDone || revealAll || isResizing) return;
 
@@ -251,19 +257,24 @@ const TimelineSection = ({ visibleSections }) => {
     return () => io.disconnect();
   }, [headerDone, revealAll, isResizing]);
 
-  // If revealAll toggles, mark all visible
   useEffect(() => {
-    if (revealAll) setVisibleCards(new Array(timelineEvents.length).fill(true));
+    if (revealAll) {
+      setVisibleCards(new Array(timelineEvents.length).fill(true));
+    }
   }, [revealAll]);
 
-  const progressForUI = headerDone
-    ? (isResizing ? lastProgressRef.current : Math.max(0.12, maxProgress))
-    : 0;
+  const progressForUI = shouldReduceMotion
+    ? 1
+    : headerDone
+      ? isResizing
+        ? lastProgressRef.current
+        : Math.max(0.12, maxProgress)
+      : 0;
 
   const header = useMemo(
     () => (
       <motion.header
-        initial={{ opacity: 0, y: 20 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-8 md:mb-12"
@@ -280,72 +291,72 @@ const TimelineSection = ({ visibleSections }) => {
         }}
       >
         <h2 className="text-3xl md:text-4xl font-extrabold pb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400 leading-snug">
-          Dòng Chảy của Lịch Sử
+          Dòng thời gian hình thành Đảng
         </h2>
+
         <p className="text-lg md:text-xl text-slate-300/95 max-w-3xl mx-auto leading-relaxed">
-          Theo dõi hành trình phát triển của tư tưởng Mác – Lênin qua các thời kỳ lịch sử
+          Theo dõi những cột mốc tiêu biểu dẫn tới sự ra đời của Đảng Cộng sản
+          Việt Nam và ý nghĩa lịch sử của sự kiện năm 1930
         </p>
       </motion.header>
     ),
-    [isVisible]
+    [isVisible, shouldReduceMotion],
   );
 
   return (
-    <section
-      id="timeline"
-      data-section
-      ref={sectionRef}
-      className="relative py-6 md:py-16 lg:py-18 px-6 md:px-8 bg-slate-900/40"
-    >
-      {/* Background glow */}
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(251,191,36,0.10),rgba(255,255,255,0)_70%)]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto">
-        {header}
-
-        <div className="relative">
-          {/* Spine */}
-          <Spine progress={progressForUI}  />
-
-          {/* Mobile side bar */}
-          <div
-            aria-hidden
-            className="lg:hidden absolute left-2 top-0 bottom-0 w-px bg-amber-400/50 -z-10"
-          />
-
-          <motion.ul
-            variants={container}
-            initial="hidden"
-            animate={isVisible ? "show" : "hidden"}
-            role="list"
-            aria-label="Mốc thời gian lịch sử"
-            className="relative space-y-8 md:space-y-10 lg:space-y-16"
-          >
-            {timelineEvents.map((e, i) => (
-              <Card
-                key={`${e.year}-${i}`}
-                e={e}
-                index={i}
-                isVisible={visibleCards[i]}
-                isResizing={isResizing}
-                ref={(el) => {
-                  cardRefs.current[i] = el;
-                  if (el) el.setAttribute("data-index", String(i));
-                }}
-              />
-            ))}
-          </motion.ul>
+    <MotionConfig reducedMotion={import.meta.env.PROD ? "user" : "never"}>
+      <section
+        id="timeline"
+        data-section
+        ref={sectionRef}
+        className="relative py-6 md:py-16 lg:py-18 px-6 md:px-8 bg-slate-900/40"
+      >
+        <div aria-hidden className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(251,191,36,0.10),rgba(255,255,255,0)_70%)]" />
         </div>
-      </div>
 
-      {/* Edge fade */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-slate-950/90"
-      />
-    </section>
+        <div className="max-w-7xl mx-auto relative">
+          {header}
+
+          <div className="relative">
+            <Spine progress={progressForUI} />
+
+            <div
+              aria-hidden
+              className="lg:hidden absolute left-2 top-0 bottom-0 w-px bg-amber-400/50 -z-10"
+            />
+
+            <motion.ul
+              variants={container}
+              initial="hidden"
+              animate={isVisible ? "show" : "hidden"}
+              role="list"
+              aria-label="Mốc thời gian lịch sử"
+              className="relative space-y-8 md:space-y-10 lg:space-y-16"
+            >
+              {timelineEvents.map((e, i) => (
+                <Card
+                  key={`${e.year}-${i}`}
+                  e={e}
+                  index={i}
+                  isVisible={visibleCards[i]}
+                  isResizing={isResizing}
+                  ref={(el) => {
+                    cardRefs.current[i] = el;
+                    if (el) el.setAttribute("data-index", String(i));
+                  }}
+                />
+              ))}
+            </motion.ul>
+          </div>
+        </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-slate-950/90"
+        />
+      </section>
+    </MotionConfig>
   );
 };
 

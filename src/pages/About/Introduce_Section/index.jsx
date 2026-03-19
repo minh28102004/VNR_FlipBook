@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Quote, BookOpen, Layers } from "lucide-react";
 import { introSlides, concepts } from "./data";
@@ -21,15 +22,18 @@ const IntroduceSection = ({ visibleSections }) => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
-    document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll("[data-animate]")
+      .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     if (total <= 1) return;
+
     let start = performance.now();
     let rafId;
 
@@ -40,18 +44,20 @@ const IntroduceSection = ({ visibleSections }) => {
         const elapsed = now - start;
         const pct = Math.min(100, (elapsed / autoplayMs) * 100);
         setProgress(pct);
+
         if (pct >= 100) {
           setCurrentIndex((p) => clampIndex(p + 1));
           start = now;
           setProgress(0);
         }
       }
+
       rafId = requestAnimationFrame(tick);
     };
 
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
-  }, [isHover, total, currentIndex]);
+  }, [isHover, total, currentIndex, progress]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -63,6 +69,7 @@ const IntroduceSection = ({ visibleSections }) => {
         setProgress(0);
       }
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [total]);
@@ -71,6 +78,7 @@ const IntroduceSection = ({ visibleSections }) => {
     setCurrentIndex(clampIndex(i));
     setProgress(0);
   };
+
   const next = () => goTo(currentIndex + 1);
   const prev = () => goTo(currentIndex - 1);
 
@@ -87,25 +95,25 @@ const IntroduceSection = ({ visibleSections }) => {
       }`}
     >
       <div className="mx-auto w-full max-w-7xl">
-        {/* Title */}
         <div className="text-center mb-10 md:mb-14">
           <div className="inline-flex items-center px-4 py-2 rounded-full text-amber-400 text-sm font-medium tracking-wider border border-amber-400/25 bg-amber-400/10">
             <BookOpen className="w-5 h-5 mr-2" />
-            Hành trình tư tưởng cách mạng
+            Sự ra đời của Đảng Cộng sản Việt Nam
           </div>
+
           <h2 className="mt-4 text-3xl md:text-4xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400">
-            Khám phá câu chuyện hình thành và lan tỏa
+            Hành trình chuẩn bị, thành lập và ý nghĩa lịch sử
           </h2>
         </div>
 
-        {/* Content */}
         <div className="grid lg:grid-cols-[1.25fr_1.75fr] gap-10 lg:gap-14 items-center">
-          {/* Left: Slideshow */}
           <div
             data-animate
             id="intro-visual"
             className={`relative transition-all duration-700 ${
-              isVisible["intro-visual"] ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+              isVisible["intro-visual"]
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-6"
             }`}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
@@ -122,12 +130,18 @@ const IntroduceSection = ({ visibleSections }) => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                <div
+                  className="absolute top-0 left-0 h-1 bg-amber-400/80 transition-all duration-200"
+                  style={{ width: `${progress}%` }}
+                />
               </div>
 
               <div className="absolute left-0 right-0 bottom-0 p-2 md:p-3 lg:p-4 text-white">
                 <h3 className="text-xl md:text-2xl font-bold text-amber-300 drop-shadow">
                   {slide?.title}
                 </h3>
+
                 <p className="mt-1.5 text-slate-100/90 text-sm md:text-base leading-relaxed">
                   {slide?.text}
                 </p>
@@ -142,7 +156,9 @@ const IntroduceSection = ({ visibleSections }) => {
                           aria-label={`Tới slide ${i + 1}`}
                           onClick={() => goTo(i)}
                           className={`relative h-2 rounded-full transition-all duration-300 ${
-                            active ? "w-2 bg-white/80" : "w-2 bg-white/40 hover:bg-white/60"
+                            active
+                              ? "w-6 bg-white/80"
+                              : "w-2 bg-white/40 hover:bg-white/60"
                           }`}
                         />
                       );
@@ -170,54 +186,74 @@ const IntroduceSection = ({ visibleSections }) => {
             </div>
           </div>
 
-          {/* Right: Text */}
           <div
             data-animate
             id="intro-text"
             className={`transition-all duration-700 ${
-              isVisible["intro-text"] ? "opacity-100 -translate-x-0" : "opacity-0 -translate-x-6"
+              isVisible["intro-text"]
+                ? "opacity-100 -translate-x-0"
+                : "opacity-0 -translate-x-6"
             }`}
           >
             <div className="space-y-6">
               <p className="text-[1.05rem] md:text-lg leading-7 md:leading-8 text-slate-200">
-                <span className="text-amber-400 font-semibold">Tư tưởng Hồ Chí Minh</span>{" "}
-                là hệ thống quan điểm toàn diện và sâu sắc về những vấn đề cơ bản
-                của cách mạng Việt Nam — kết tinh từ{" "}
-                <span className="text-amber-400 font-semibold">chủ nghĩa Mác–Lênin</span>,
-                truyền thống tốt đẹp dân tộc và tinh hoa văn hóa nhân loại.
+                <span className="text-amber-400 font-semibold">
+                  Đảng Cộng sản Việt Nam ra đời
+                </span>{" "}
+                là kết quả của sự kết hợp giữa{" "}
+                <span className="text-amber-400 font-semibold">
+                  chủ nghĩa Mác - Lênin
+                </span>
+                , phong trào công nhân và phong trào yêu nước Việt Nam.
               </p>
 
               <p className="text-[1.05rem] md:text-lg leading-7 md:leading-8 text-slate-200">
-                Nó không chỉ là lý thuyết, mà là{" "}
+                Đây là bước ngoặt lịch sử trọng đại, chấm dứt tình trạng{" "}
                 <span className="text-amber-400 font-semibold">
-                  ngọn đuốc soi đường — kim chỉ nam cho hành động
-                </span>{" "}
-                của Đảng và nhân dân Việt Nam, dẫn dắt sự nghiệp cách mạng, đổi mới và hội nhập.
+                  khủng hoảng về đường lối cứu nước và giai cấp lãnh đạo
+                </span>
+                , mở ra con đường đúng đắn cho cách mạng Việt Nam.
               </p>
 
               <p className="text-[1.05rem] md:text-lg leading-7 md:leading-8 text-slate-300">
-                Theo dõi các mốc và câu chuyện dưới đây để thấy hành trình hình thành,
-                phát triển và giá trị bền vững của tư tưởng ấy trong thời đại mới.
+                Theo dõi các mốc dưới đây để thấy rõ bối cảnh, quá trình chuẩn
+                bị, hội nghị thành lập và ý nghĩa to lớn của sự kiện ngày
+                3/2/1930.
               </p>
 
               <div className="py-4 px-4 bg-slate-800 rounded-xl border-l-4 border-amber-400 shadow-lg">
                 <Quote className="w-6 h-6 text-amber-400 mb-4" />
                 <blockquote className="text-lg italic text-slate-300 mb-4">
-                  "Không có gì quý hơn độc lập, tự do."
+                  "Đảng ta là đạo đức, là văn minh."
                 </blockquote>
-                <cite className="text-amber-400 font-medium">— Hồ Chí Minh</cite>
+                <cite className="text-amber-400 font-medium">
+                  — Hồ Chí Minh
+                </cite>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ==== DÒNG CHẢY LỊCH SỬ (grid concepts) ==== */}
-        <style>{`@keyframes shineSweep{0%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(160%) skewX(-18deg)}}
-          .card-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
-          transition:transform .35s cubic-bezier(.22,.77,.36,1),box-shadow .35s ease,background-color .35s ease;
-          backface-visibility:hidden;will-change:transform}
-          .card-tilt:hover{--sc:1.03}
-          .card-tilt:hover .shine{animation:shineSweep 1.1s ease-out}
+        <style>{`
+          @keyframes shineSweep {
+            0% { transform: translateX(-160%) skewX(-18deg); }
+            100% { transform: translateX(160%) skewX(-18deg); }
+          }
+
+          .card-tilt {
+            transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
+            transition: transform .35s cubic-bezier(.22,.77,.36,1), box-shadow .35s ease, background-color .35s ease;
+            backface-visibility: hidden;
+            will-change: transform;
+          }
+
+          .card-tilt:hover {
+            --sc: 1.03;
+          }
+
+          .card-tilt:hover .shine {
+            animation: shineSweep 1.1s ease-out;
+          }
         `}</style>
 
         <div
@@ -229,17 +265,24 @@ const IntroduceSection = ({ visibleSections }) => {
         >
           <div className="flex items-center gap-2 text-slate-200 mb-4">
             <Layers className="w-5 h-5 text-amber-400" />
-            <h3 className="text-lg md:text-xl font-semibold">Dòng chảy của lịch sử</h3>
+            <h3 className="text-lg md:text-xl font-semibold">
+              Dòng chảy của lịch sử
+            </h3>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {/* eslint-disable-next-line no-unused-vars */}
             {concepts.map(({ icon: Icon, title, text }, i) => (
               <div
                 key={title}
                 className="relative group rounded-xl border border-white/10 bg-slate-800/50 p-4
                   shadow-[0_6px_24px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)]
                   transition-all duration-300 ease-out card-tilt"
-                style={{ animationDelay: isVisible["intro-concepts"] ? `${i * 90}ms` : "0ms" }}
+                style={{
+                  animationDelay: isVisible["intro-concepts"]
+                    ? `${i * 90}ms`
+                    : "0ms",
+                }}
                 onMouseMove={(e) => {
                   const el = e.currentTarget;
                   const r = el.getBoundingClientRect();
@@ -249,6 +292,7 @@ const IntroduceSection = ({ visibleSections }) => {
                   const py = (y / r.height) * 100;
                   const rx = (py - 50) / 10;
                   const ry = (50 - px) / 10;
+
                   el.style.setProperty("--rx", `${rx}deg`);
                   el.style.setProperty("--ry", `${ry}deg`);
                   el.style.setProperty("--mx", `${px}%`);
@@ -274,11 +318,14 @@ const IntroduceSection = ({ visibleSections }) => {
                   <div className="p-2 rounded-lg border text-amber-400 bg-amber-400/15 border-amber-400/25 transition-all duration-300 group-hover:translate-y-[-2px] group-hover:bg-amber-400/20 group-hover:border-amber-300/40">
                     <Icon className="w-5 h-5" />
                   </div>
+
                   <div>
                     <div className="text-slate-100 font-semibold leading-6 transition-transform duration-300 group-hover:translate-y-[-1px]">
                       {title}
                     </div>
-                    <p className="text-slate-300 text-sm mt-1.5 leading-6">{text}</p>
+                    <p className="text-slate-300 text-sm mt-1.5 leading-6">
+                      {text}
+                    </p>
                   </div>
                 </div>
               </div>

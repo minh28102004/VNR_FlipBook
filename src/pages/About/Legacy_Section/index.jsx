@@ -62,7 +62,7 @@ const TrademarkFooter = () => (
         />
       </svg>
       <span className="text-sm md:text-base font-semibold text-amber-200">
-        © 2026 HCMBookStory – All Rights Reserved
+        © 2026 VNRBookStory – Sự ra đời của Đảng Cộng sản Việt Nam
       </span>
     </div>
   </div>
@@ -74,15 +74,13 @@ const FinaleSection = ({ onPrimary, onSecondary, visibleSections }) => {
 
   const goPrimary = () => {
     if (typeof onPrimary === "function") return onPrimary();
-    // “Khám phá chi tiết giáo trình”
     navigate(
-      endPoint.STORYBOOK ?? endPoint.BOOKS ?? endPoint.BOOK ?? "/storybook"
+      endPoint.STORYBOOK ?? endPoint.BOOKS ?? endPoint.BOOK ?? "/storybook",
     );
   };
 
   const goSecondary = () => {
     if (typeof onSecondary === "function") return onSecondary();
-    // “Xem toàn bộ chương trình”
     navigate(endPoint.QUIZ ?? "/quiz");
   };
 
@@ -95,26 +93,26 @@ const FinaleSection = ({ onPrimary, onSecondary, visibleSections }) => {
         className="text-center"
       >
         <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-amber-400/10 px-3 py-1 text-amber-200 text-xs md:text-sm tracking-wide">
-          <Sparkles className="h-4 w-4" /> Cảm ơn bạn đã đồng hành đến cuối hành
-          trình!
+          <Sparkles className="h-4 w-4" />
+          Khép lại chặng đường tìm hiểu lịch sử
         </div>
 
         <h2 className="pt-3 text-3xl md:text-4xl font-extrabold pb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-amber-400 leading-snug">
-          Kết thúc hành trình – Mở ra tương lai mới
+          Sự ra đời của Đảng – Bước ngoặt vĩ đại của cách mạng Việt Nam
         </h2>
 
         <p className="text-lg md:text-xl text-slate-300/95 max-w-4xl mx-auto leading-relaxed">
-          Những nguyên lý sống động của{" "}
+          Sự kiện thành lập{" "}
           <span className="text-amber-200 font-semibold">
-            Tư tưởng Hồ Chí Minh
+            Đảng Cộng sản Việt Nam
           </span>{" "}
-          không dừng ở trang sách. Hãy nhận thức, vận dụng sáng tạo vào thực
-          tiễn bản thân, góp phần xây dựng đất nước Việt Nam xã hội chủ nghĩa
-          giàu mạnh, dân chủ, công bằng, văn minh.
+          vào đầu năm 1930 đã chấm dứt cuộc khủng hoảng về đường lối cứu nước,
+          xác lập lực lượng lãnh đạo cách mạng và mở ra một thời kỳ phát triển
+          mới cho dân tộc Việt Nam.
         </p>
       </motion.div>
     ),
-    [isVisible]
+    [isVisible],
   );
 
   return (
@@ -142,7 +140,7 @@ const FinaleSection = ({ onPrimary, onSecondary, visibleSections }) => {
             className="inline-flex items-center gap-2 rounded-xl px-5 py-3 md:px-6 md:py-3.5 font-semibold text-slate-900 bg-amber-300 hover:bg-amber-200 active:bg-amber-300/90 transition-colors"
           >
             <Compass className="h-5 w-5" />
-            Bắt đầu lộ trình học
+            Xem lại hành trình lịch sử
             <ArrowRight className="h-5 w-5" />
           </motion.button>
 
@@ -154,7 +152,7 @@ const FinaleSection = ({ onPrimary, onSecondary, visibleSections }) => {
             className="inline-flex items-center gap-2 rounded-xl px-5 py-3 md:px-6 md:py-3.5 font-semibold text-amber-200/90 ring-1 ring-amber-300/30 hover:bg-amber-400/10 transition-colors"
           >
             <BookOpenCheck className="h-5 w-5" />
-            Khám phá nội dung
+            Khám phá nội dung trọng tâm
           </motion.button>
         </motion.div>
 

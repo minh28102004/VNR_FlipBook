@@ -64,24 +64,24 @@ function TipModal({ open, onClose, darkMode }) {
       tone === "amber"
         ? "bg-amber-50"
         : tone === "green"
-        ? "bg-green-50"
-        : tone === "blue"
-        ? "bg-blue-50"
-        : tone === "violet"
-        ? "bg-violet-50"
-        : "bg-slate-100";
+          ? "bg-green-50"
+          : tone === "blue"
+            ? "bg-blue-50"
+            : tone === "violet"
+              ? "bg-violet-50"
+              : "bg-slate-100";
 
     const darkBg = "bg-slate-700/60";
     const titleColor =
       tone === "amber"
         ? "text-amber-600"
         : tone === "green"
-        ? "text-green-500"
-        : tone === "blue"
-        ? "text-blue-500"
-        : tone === "violet"
-        ? "text-violet-500"
-        : "text-slate-200";
+          ? "text-green-500"
+          : tone === "blue"
+            ? "text-blue-500"
+            : tone === "violet"
+              ? "text-violet-500"
+              : "text-slate-200";
 
     return (
       <div className={`${darkMode ? darkBg : lightBg} p-3 rounded-lg`}>
@@ -188,8 +188,8 @@ function TipModal({ open, onClose, darkMode }) {
                             ? "bg-gradient-to-r from-amber-300/20 via-amber-300/15 to-amber-400/10 text-amber-100 shadow-sm border-amber-200/40"
                             : "bg-amber-500 text-white ring-amber-500"
                           : darkMode
-                          ? "text-slate-200 ring-slate-700 hover:bg-slate-700 border-slate-600"
-                          : "text-slate-700 ring-slate-200 hover:bg-slate-50"
+                            ? "text-slate-200 ring-slate-700 hover:bg-slate-700 border-slate-600"
+                            : "text-slate-700 ring-slate-200 hover:bg-slate-50"
                       }`}
                     aria-pressed={active ? "true" : "false"}
                   >
@@ -440,7 +440,7 @@ function TipModal({ open, onClose, darkMode }) {
         </div>
       </motion.div>
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 }
 
@@ -472,7 +472,7 @@ export default function QuizSidebar({
   const totalQuestions = React.useMemo(() => {
     return (chapters || []).reduce(
       (sum, ch) => sum + (ch?.questions?.length || 0),
-      0
+      0,
     );
   }, [chapters]);
 
@@ -522,7 +522,7 @@ export default function QuizSidebar({
                     darkMode ? "text-white" : "text-slate-900"
                   }`}
                 >
-                  Tư tưởng Hồ Chí Minh
+                  Tư tưởng Đảng Cộng sản Việt Nam
                 </h1>
                 <p
                   className={`${
@@ -593,8 +593,8 @@ export default function QuizSidebar({
                             ? "bg-gradient-to-r from-amber-300/20 via-amber-300/15 to-amber-400/10 text-amber-100 shadow-inner border-amber-200/40"
                             : "bg-slate-800 border-slate-700 hover:border-amber-300/50"
                           : active
-                          ? "bg-amber-50 border-amber-400"
-                          : "bg-white border-slate-300 hover:border-amber-400/50 hover:shadow-md"
+                            ? "bg-amber-50 border-amber-400"
+                            : "bg-white border-slate-300 hover:border-amber-400/50 hover:shadow-md"
                       }`}
                   >
                     {/* badge số thứ tự */}
@@ -614,8 +614,8 @@ export default function QuizSidebar({
               ? "bg-gradient-to-br from-amber-200 to-amber-400 text-slate-900 shadow-md shadow-amber-400/30"
               : "bg-slate-700/80 text-slate-300 border border-slate-600 group-hover:border-amber-300/50"
             : active
-            ? "bg-gradient-to-br from-amber-300 to-amber-500 text-slate-800 shadow-md shadow-amber-400/40"
-            : "bg-slate-200 text-slate-600 border border-slate-300 group-hover:border-amber-400/50"
+              ? "bg-gradient-to-br from-amber-300 to-amber-500 text-slate-800 shadow-md shadow-amber-400/40"
+              : "bg-slate-200 text-slate-600 border border-slate-300 group-hover:border-amber-400/50"
         }`}
                         >
                           {i + 1}
@@ -633,8 +633,8 @@ export default function QuizSidebar({
                                   ? "text-amber-100"
                                   : "text-white"
                                 : active
-                                ? "text-amber-600"
-                                : "text-slate-800"
+                                  ? "text-amber-600"
+                                  : "text-slate-800"
                             }`}
                         >
                           {ch.title}
@@ -647,8 +647,8 @@ export default function QuizSidebar({
                                   ? "bg-amber-200/20 text-amber-300"
                                   : "bg-slate-700 text-slate-300"
                                 : active
-                                ? "bg-amber-100 text-amber-700"
-                                : "bg-slate-100 text-slate-600"
+                                  ? "bg-amber-100 text-amber-700"
+                                  : "bg-slate-100 text-slate-600"
                             }`}
                         >
                           {progress}%
@@ -663,8 +663,8 @@ export default function QuizSidebar({
                                 ? "text-slate-200"
                                 : "text-slate-400"
                               : active
-                              ? "text-slate-700"
-                              : "text-slate-500"
+                                ? "text-slate-700"
+                                : "text-slate-500"
                           }`}
                       >
                         {ch.description}
@@ -687,8 +687,8 @@ export default function QuizSidebar({
                                 ? "bg-amber-400"
                                 : "bg-amber-500"
                               : darkMode
-                              ? "bg-slate-500"
-                              : "bg-amber-300"
+                                ? "bg-slate-500"
+                                : "bg-amber-300"
                           }`}
                         />
                       </div>

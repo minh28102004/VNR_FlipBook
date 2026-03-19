@@ -1,72 +1,72 @@
-﻿import { Flag, Ship, Landmark, Users, Heart, Sparkles } from 'lucide-react';
+﻿import { Flag, Ship, Landmark, Users, Heart, Sparkles } from "lucide-react";
 
 const base = import.meta.env.BASE_URL;
 
 export const bannerImages = [
-  `${base}kdht.png`,
-  `${base}bnr.png`,
-  `${base}mtdl.png`,
-  `${base}smdk.png`,
-  `${base}dssd.png`,
+  `${base}boi-canh-lich-su.png`,
+  `${base}nguyen-ai-quoc-ra-di.png`,
+  `${base}tiep-can-mac-lenin.png`,
+  `${base}thanh-lap-dang.png`,
+  `${base}y-nghia-lich-su.png`,
 ];
 
 export const introSlides = [
   {
     image: bannerImages[0],
-    title: 'Bối cảnh lịch sử',
-    text: 'Cuối thế kỷ XIX, Việt Nam trong tình trạng khủng hoảng về đường lối cứu nước. Các phong trào yêu nước như Cần Vương, Yên Thế, Đông Du đều thất bại.',
+    title: "Bối cảnh lịch sử",
+    text: "Cuối thế kỷ XIX đầu thế kỷ XX, Việt Nam lâm vào khủng hoảng về đường lối cứu nước. Nhiều phong trào yêu nước diễn ra mạnh mẽ nhưng đều chưa tìm được con đường giải phóng dân tộc đúng đắn.",
   },
   {
     image: bannerImages[1],
-    title: 'Nguyễn Ái Quốc ra đi tìm đường cứu nước',
-    text: 'Ngày 5/6/1911, Nguyễn Ái Quốc rời bến cảng Nhà Rồng để tìm đường cứu nước. Hành trình bôn ba khắp năm châu bốn biển.',
+    title: "Nguyễn Ái Quốc tìm đường cứu nước",
+    text: "Ngày 5/6/1911, Nguyễn Ái Quốc ra đi tìm đường cứu nước, mở đầu hành trình khảo nghiệm thực tiễn cách mạng thế giới để tìm con đường giải phóng dân tộc Việt Nam.",
   },
   {
     image: bannerImages[2],
-    title: 'Tiếp cận Chủ nghĩa Mác - Lênin',
-    text: 'Năm 1920, tại Đại hội Đảng Cộng sản Pháp, Nguyễn Ái Quốc đọc được Luận cương của Lênin về vấn đề dân tộc và thuộc địa.',
+    title: "Tiếp cận chủ nghĩa Mác - Lênin",
+    text: "Năm 1920, Nguyễn Ái Quốc tiếp cận Luận cương của Lênin về vấn đề dân tộc và thuộc địa, từ đó xác định con đường cách mạng vô sản là hướng đi đúng cho dân tộc Việt Nam.",
   },
   {
     image: bannerImages[3],
-    title: 'Thành lập Đảng Cộng sản Việt Nam',
-    text: 'Tháng 2/1930, Hội nghị hợp nhất tại Hồng Kông thành lập Đảng Cộng sản Việt Nam - sự kiện lịch sử trọng đại.',
+    title: "Thành lập Đảng Cộng sản Việt Nam",
+    text: "Đầu năm 1930, tại Hội nghị hợp nhất các tổ chức cộng sản ở Hồng Kông do Nguyễn Ái Quốc chủ trì, Đảng Cộng sản Việt Nam chính thức ra đời.",
   },
   {
     image: bannerImages[4],
-    title: 'Ý nghĩa lịch sử',
-    text: 'Sự ra đời của Đảng chấm dứt khủng hoảng về đường lối, đánh dấu bước ngoặt trong cách mạng Việt Nam.',
+    title: "Ý nghĩa lịch sử",
+    text: "Sự ra đời của Đảng là bước ngoặt vĩ đại trong lịch sử cách mạng Việt Nam, chấm dứt khủng hoảng về đường lối và khẳng định vai trò lãnh đạo của giai cấp công nhân.",
   },
 ];
 
 export const concepts = [
   {
     icon: Flag,
-    title: 'Giải phóng dân tộc',
-    text: 'Mục tiêu hàng đầu của cách mạng Việt Nam là giành độc lập dân tộc, đánh đổ đế quốc và phong kiến.',
+    title: "Bối cảnh ra đời",
+    text: "Phong trào yêu nước phát triển mạnh nhưng thiếu đường lối đúng đắn và một tổ chức lãnh đạo thống nhất.",
   },
   {
     icon: Users,
-    title: 'Kết hợp lý luận với thực tiễn',
-    text: 'Kết hợp Chủ nghĩa Mác - Lênin với phong trào công nhân và phong trào yêu nước Việt Nam.',
+    title: "Vai trò Nguyễn Ái Quốc",
+    text: "Nguyễn Ái Quốc chuẩn bị về chính trị, tư tưởng và tổ chức cho sự thành lập Đảng Cộng sản Việt Nam.",
   },
   {
     icon: Landmark,
-    title: 'Đảng lãnh đạo',
-    text: 'Đảng Cộng sản Việt Nam là lực lượng lãnh đạo, tổ chức và giáo dục quần chúng.',
+    title: "Hợp nhất các tổ chức cộng sản",
+    text: "Ba tổ chức cộng sản được hợp nhất, tạo nên một chính đảng duy nhất lãnh đạo cách mạng Việt Nam.",
   },
   {
     icon: Heart,
-    title: 'Đại đoàn kết',
-    text: 'Tập hợp lực lượng toàn dân, không phân biệt giai cấp, tôn giáo hay dân tộc.',
+    title: "Chấm dứt khủng hoảng đường lối",
+    text: "Đảng ra đời đã giải quyết cuộc khủng hoảng về đường lối và giai cấp lãnh đạo cách mạng kéo dài nhiều năm.",
   },
   {
     icon: Ship,
-    title: 'Hành trình hình thành',
-    text: 'Từ 1911–1930: tìm đường cứu nước; 1930: thành lập Đảng; 1945: cách mạng thành công.',
+    title: "Mốc son lịch sử",
+    text: "Ngày 3/2/1930 trở thành dấu mốc mở ra thời kỳ mới cho cách mạng Việt Nam dưới sự lãnh đạo của Đảng.",
   },
   {
     icon: Sparkles,
-    title: 'Di sản ngày nay',
-    text: 'Đảng lãnh đạo nhân dân giành nhiều thắng lợi, từ kháng chiến đến công cuộc đổi mới.',
+    title: "Ý nghĩa lâu dài",
+    text: "Sự ra đời của Đảng đặt nền tảng cho những thắng lợi lớn của cách mạng Việt Nam từ 1930 đến nay.",
   },
 ];

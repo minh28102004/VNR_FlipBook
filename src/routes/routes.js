@@ -8,7 +8,7 @@ const endPoint = {
   FAQS: "/faqs",
   STORYBOOK: "/storybook",
   QUIZTEST: "/quiztest",
-  AI_APPENDIX: "/phu-luc-ai",
+  AI_APPENDIX: "/AIappendix",
 };
 
 export default endPoint;
