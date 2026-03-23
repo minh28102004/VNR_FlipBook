@@ -1,13 +1,11 @@
 ﻿import { Flag, Ship, Landmark, Users, Heart, Sparkles } from "lucide-react";
 
-const base = import.meta.env.BASE_URL;
-
 export const bannerImages = [
-  `${base}boi-canh-lich-su.png`,
-  `${base}nguyen-ai-quoc-ra-di.png`,
-  `${base}tiep-can-mac-lenin.png`,
-  `${base}thanh-lap-dang.png`,
-  `${base}y-nghia-lich-su.png`,
+  "/hr.png",
+  "/dssd.png",
+  "/kdht.png",
+  "/mtdl.png",
+  "/smdk.png",
 ];
 
 export const introSlides = [
